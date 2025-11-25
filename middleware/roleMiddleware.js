@@ -1,4 +1,4 @@
-//we chcek the role
+//we chcek the role role == admin ? admin : customer
 
 module.exports = (role) => {
   return (req, res, next) => {

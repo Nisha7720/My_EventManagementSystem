@@ -1,22 +1,25 @@
-const mongoose = require("express");
+const mongoose = require("mongoose");
 
 const bookSchema = new mongoose.Schema({
-  //userId - Booking by which users
+  // Who booked the event
   userId: {
-    // field means MongoDB ka unique ID (ObjectId) store hoga.
     type: mongoose.Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User", // model name
+    required: true,
   },
-  //eventId = booking for which event
+
+  // Which event was booked
   eventId: {
-    type: mongoose.Schema.Types.objectId,
-    ref: "event",
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Event", // model name
+    required: true,
   },
-  // show current date
+
+  // Booking date
   date: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
 });
 
-module.exports = mongoose.model("booking", bookSchema);
+module.exports = mongoose.model("Booking", bookSchema);
