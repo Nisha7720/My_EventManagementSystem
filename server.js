@@ -9,7 +9,10 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(express.json());
+//app.use(express.json());
+
+app.use(express.json({ limit: "50mb" })); // 50mb max
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 app.use(cors());
 
@@ -17,6 +20,8 @@ app.use(cors());
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/event", require("./routes/eventRoutes"));
 app.use("/api/booking", require("./routes/bookingRoutes"));
+//routes used for iimage
+app.use("/api/image", require("./routes/cloudRoutes"));
 
 app.listen(4000, () => {
   console.log("Server start at the port on 4000");
